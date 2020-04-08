@@ -8,7 +8,7 @@ const result = (durations, durationType) => {
     return Math.trunc((parseInt(durations, 10) * 30) / 3);
   }
 
-  return Math.trunc(parseInt(duration, 10) / 3);
+  return Math.trunc(parseInt(durations, 10) / 3);
 };
 
 const hospitalized = (number) => (15 / 100) * number;
