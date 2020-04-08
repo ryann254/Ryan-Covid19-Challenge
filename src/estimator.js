@@ -11,6 +11,26 @@ const result = (duration, durationType) => {
   return Math.trunc(parseInt(duration, 10) / 3);
 };
 
+const returnFunction = (
+  firstField,
+  impactFirstField,
+  impactSecondField,
+  severeFirstField,
+  severeSecondField
+) => {
+  return {
+    input: firstField,
+    impact: {
+      currentlyInfected: impactFirstField,
+      infectionsByRequestedTime: impactSecondField
+    },
+    severeImpact: {
+      currentlyInfected: severeFirstField,
+      infectionsByRequestedTime: severeSecondField
+    }
+  };
+};
+
 const covid19ImpactEstimator = (data) => {
   const input = data;
   const { reportedCases, periodType, timeToElapse } = input;
@@ -69,17 +89,13 @@ const covid19ImpactEstimator = (data) => {
     };
   }
 
-  return {
+  return returnFunction(
     input,
-    impact: {
-      currentlyInfected,
-      infectionsByRequestedTime
-    },
-    severeImpact: {
-      currentlyInfected: severeCurrentlyInfected,
-      infectionsByRequestedTime: severeIRT
-    }
-  };
+    currentlyInfected,
+    infectionsByRequestedTime,
+    severeCurrentlyInfected,
+    severeIRT
+  );
 };
 
 export default covid19ImpactEstimator;
