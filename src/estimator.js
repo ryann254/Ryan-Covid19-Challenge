@@ -24,11 +24,9 @@ const covid19ImpactEstimator = (input) => {
   );
   const severeIRT = Math.trunc(calculator(severeCurrentlyInfected, 512));
 
-  console.log(infectionsByRequestedTime);
-
   if (periodType === 'weeks') {
-    const infectionsByWeeks = calculator(currentlyInfected, 4);
-    const severeIRTWeeks = calculator(severeCurrentlyInfected, 4);
+    const infectionsByWeeks = calculator(currentlyInfected, 256);
+    const severeIRTWeeks = calculator(severeCurrentlyInfected, 256);
 
     return {
       input,
@@ -43,8 +41,8 @@ const covid19ImpactEstimator = (input) => {
     };
   }
   if (periodType === 'months') {
-    const infectionsByMonths = calculator(currentlyInfected, 1024);
-    const severeIRTMonths = calculator(severeCurrentlyInfected, 1024);
+    const infectionsByMonths = calculator(currentlyInfected, 512);
+    const severeIRTMonths = calculator(severeCurrentlyInfected, 512);
 
     return {
       input,
