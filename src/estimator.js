@@ -20,9 +20,9 @@ const covid19ImpactEstimator = (input) => {
   const currentlyInfected = calculator(reportedCases, 10);
   const severeCurrentlyInfected = calculator(reportedCases, 50);
   const infectionsByRequestedTime = Math.trunc(
-    calculator(currentlyInfected, 2 / 3)
+    calculator(currentlyInfected, 512)
   );
-  const severeIRT = calculator(currentlyInfected, 2 / 3);
+  const severeIRT = calculator(currentlyInfected, 512);
 
   if (periodType === 'weeks') {
     const infectionsByWeeks = calculator(currentlyInfected, 4);
@@ -72,4 +72,4 @@ const covid19ImpactEstimator = (input) => {
 
 covid19ImpactEstimator(data);
 
-export default covid19ImpactEstimator;
+// export default covid19ImpactEstimator;
