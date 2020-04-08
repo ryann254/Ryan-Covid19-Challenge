@@ -14,7 +14,8 @@ const data = {
 
 const calculator = (number, multiplyBy) => number * multiplyBy;
 
-const covid19ImpactEstimator = (input) => {
+const covid19ImpactEstimator = (data) => {
+  const input = data;
   const { reportedCases, periodType, timeToElapse } = input;
 
   const resultIndays = Math.trunc(parseInt(timeToElapse, 10) / 3);
