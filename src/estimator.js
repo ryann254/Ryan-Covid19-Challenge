@@ -48,7 +48,8 @@ function returnFunction(
 
 const covid19ImpactEstimator = (data) => {
   const input = data;
-  const { reportedCases, periodType, timeToElapse, totalHospitalBeds } = input;
+  const { reportedCases, periodType, timeToElapse } = input;
+  const { totalHospitalBeds } = input;
 
   const resultIndays = result(timeToElapse);
   const resultInWeeks = result(timeToElapse, 'weeks');
@@ -104,8 +105,8 @@ const covid19ImpactEstimator = (data) => {
       severeCurrentlyInfected,
       2 ** resultInMonths
     );
-    toBeHospitalized = hospitalized(infectionsByWeeks);
-    toBeHospitalizedSevere = hospitalized(severeIRTWeeks);
+    toBeHospitalized = hospitalized(infectionsByMonths);
+    toBeHospitalizedSevere = hospitalized(severeIRTMonths);
     hospitalBeds = availableHospitalBeds(totalHospitalBeds, toBeHospitalized);
     hospitalBedsSevere = availableHospitalBeds(
       totalHospitalBeds,
