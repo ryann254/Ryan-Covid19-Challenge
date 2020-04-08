@@ -76,8 +76,8 @@ const covid19ImpactEstimator = (data) => {
     totalHospitalBeds,
     toBeHospitalizedSevere
   );
-  let IcuCareNeeded = calculateICUCareNeeded(infectionsByRequestedTime);
-  let IcuCareNeededSevere = calculateICUCareNeeded(severeIRT);
+  const IcuCareNeeded = calculateICUCareNeeded(infectionsByRequestedTime);
+  const IcuCareNeededSevere = calculateICUCareNeeded(severeIRT);
 
   if (periodType === 'weeks') {
     const infectionsByWeeks = calculator(currentlyInfected, 2 ** resultInWeeks);
@@ -92,8 +92,8 @@ const covid19ImpactEstimator = (data) => {
       totalHospitalBeds,
       toBeHospitalizedSevere
     );
-    IcuCareNeeded = calculateICUCareNeeded(infectionsByWeeks);
-    IcuCareNeededSevere = calculateICUCareNeeded(severeIRTWeeks);
+    const IcuCareNeededWeeks = calculateICUCareNeeded(infectionsByWeeks);
+    const IcuCareNeededSevereWeeks = calculateICUCareNeeded(severeIRTWeeks);
 
     return returnFunction(
       input,
@@ -101,12 +101,12 @@ const covid19ImpactEstimator = (data) => {
       infectionsByWeeks,
       toBeHospitalized,
       hospitalBeds,
-      IcuCareNeeded,
+      IcuCareNeededWeeks,
       severeCurrentlyInfected,
       severeIRTWeeks,
       toBeHospitalizedSevere,
       hospitalBedsSevere,
-      IcuCareNeededSevere
+      IcuCareNeededSevereWeeks
     );
   }
   if (periodType === 'months') {
@@ -125,8 +125,8 @@ const covid19ImpactEstimator = (data) => {
       totalHospitalBeds,
       toBeHospitalizedSevere
     );
-    IcuCareNeeded = calculateICUCareNeeded(infectionsByMonths);
-    IcuCareNeededSevere = calculateICUCareNeeded(severeIRTMonths);
+    const IcuCareNeededMonths = calculateICUCareNeeded(infectionsByMonths);
+    const IcuCareNeededSevereMonths = calculateICUCareNeeded(severeIRTMonths);
 
     return returnFunction(
       input,
@@ -134,12 +134,12 @@ const covid19ImpactEstimator = (data) => {
       infectionsByMonths,
       toBeHospitalized,
       hospitalBeds,
-      IcuCareNeeded,
+      IcuCareNeededMonths,
       severeCurrentlyInfected,
       severeIRTMonths,
       toBeHospitalizedSevere,
       hospitalBedsSevere,
-      IcuCareNeededSevere
+      IcuCareNeededSevereMonths
     );
   }
 
