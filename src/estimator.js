@@ -63,7 +63,6 @@ const covid19ImpactEstimator = (data) => {
   const input = data;
   const { reportedCases, periodType, timeToElapse } = input;
   const { totalHospitalBeds } = input;
-  const { avgDailyIncomePopulation, avgDailyIncomeInUSD } = input.region;
 
   const resultIndays = result(timeToElapse);
   const resultInWeeks = result(timeToElapse, 'weeks');
