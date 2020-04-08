@@ -17,16 +17,24 @@ const calculator = (number, multiplyBy) => number * multiplyBy;
 const covid19ImpactEstimator = (input) => {
   const { reportedCases, periodType, timeToElapse } = input;
 
-  const result = Math.trunc(parseInt(timeToElapse, 10) / 3);
+  const resultIndays = Math.trunc(parseInt(timeToElapse, 10) / 3);
+  const resultInWeeks = Math.trunc(parseInt(timeToElapse, 10) / 7);
+  const resultInMonths = Math.trunc(parseInt(timeToElapse, 10) / 30);
 
   const currentlyInfected = calculator(reportedCases, 10);
   const severeCurrentlyInfected = calculator(reportedCases, 50);
-  const infectionsByRequestedTime = calculator(currentlyInfected, 2 ** result);
-  const severeIRT = calculator(severeCurrentlyInfected, 2 ** result);
+  const infectionsByRequestedTime = calculator(
+    currentlyInfected,
+    2 ** resultIndays
+  );
+  const severeIRT = calculator(severeCurrentlyInfected, 2 ** resultIndays);
 
   if (periodType === 'weeks') {
-    const infectionsByWeeks = calculator(currentlyInfected, 4);
-    const severeIRTWeeks = calculator(severeCurrentlyInfected, 4);
+    const infectionsByWeeks = calculator(currentlyInfected, 2 ** resultInWeeks);
+    const severeIRTWeeks = calculator(
+      severeCurrentlyInfected,
+      2 ** resultInWeeks
+    );
 
     return {
       input,
@@ -41,8 +49,14 @@ const covid19ImpactEstimator = (input) => {
     };
   }
   if (periodType === 'months') {
-    const infectionsByMonths = calculator(currentlyInfected, 1024);
-    const severeIRTMonths = calculator(severeCurrentlyInfected, 1024);
+    const infectionsByMonths = calculator(
+      currentlyInfected,
+      2 ** resultInMonths
+    );
+    const severeIRTMonths = calculator(
+      severeCurrentlyInfected,
+      2 ** resultInMonths
+    );
 
     return {
       input,
