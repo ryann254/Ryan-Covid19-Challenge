@@ -13,6 +13,8 @@ const result = (durations, durationType) => {
 
 const hospitalized = (number) => (15 / 100) * number;
 
+const calculateICUCareNeeded = (number) => (5 / 100) * number;
+
 function availableHospitalBeds(totalBeds, patients) {
   const beds = (35 / 100) * totalBeds;
 
@@ -25,10 +27,12 @@ function returnFunction(
   impactSecondField,
   impactThirdField,
   impactFourthField,
+  impactFifthField,
   severeFirstField,
   severeSecondField,
   severeThirdField,
-  severeFourthField
+  severeFourthField,
+  severeFifthField
 ) {
   return {
     input: firstField,
@@ -36,13 +40,15 @@ function returnFunction(
       currentlyInfected: impactFirstField,
       infectionsByRequestedTime: impactSecondField,
       severeCasesByRequestedTime: impactThirdField,
-      hospitalBedsByRequestedTime: impactFourthField
+      hospitalBedsByRequestedTime: impactFourthField,
+      casesForICUByRequestedTime: impactFifthField
     },
     severeImpact: {
       currentlyInfected: severeFirstField,
       infectionsByRequestedTime: severeSecondField,
       severeCasesByRequestedTime: severeThirdField,
-      hospitalBedsByRequestedTime: severeFourthField
+      hospitalBedsByRequestedTime: severeFourthField,
+      casesForICUByRequestedTime: severeFifthField
     }
   };
 }
@@ -70,6 +76,8 @@ const covid19ImpactEstimator = (data) => {
     totalHospitalBeds,
     toBeHospitalizedSevere
   );
+  let IcuCareNeeded = calculateICUCareNeeded(infectionsByRequestedTime);
+  let IcuCareNeededSevere = calculateICUCareNeeded(severeIRT);
 
   if (periodType === 'weeks') {
     const infectionsByWeeks = calculator(currentlyInfected, 2 ** resultInWeeks);
@@ -84,6 +92,8 @@ const covid19ImpactEstimator = (data) => {
       totalHospitalBeds,
       toBeHospitalizedSevere
     );
+    IcuCareNeeded = calculateICUCareNeeded(infectionsByWeeks);
+    IcuCareNeededSevere = calculateICUCareNeeded(severeIRTWeeks);
 
     return returnFunction(
       input,
@@ -91,10 +101,12 @@ const covid19ImpactEstimator = (data) => {
       infectionsByWeeks,
       toBeHospitalized,
       hospitalBeds,
+      IcuCareNeeded,
       severeCurrentlyInfected,
       severeIRTWeeks,
       toBeHospitalizedSevere,
-      hospitalBedsSevere
+      hospitalBedsSevere,
+      IcuCareNeededSevere
     );
   }
   if (periodType === 'months') {
@@ -113,6 +125,8 @@ const covid19ImpactEstimator = (data) => {
       totalHospitalBeds,
       toBeHospitalizedSevere
     );
+    IcuCareNeeded = calculateICUCareNeeded(infectionsByMonths);
+    IcuCareNeededSevere = calculateICUCareNeeded(severeIRTMonths);
 
     return returnFunction(
       input,
@@ -120,10 +134,12 @@ const covid19ImpactEstimator = (data) => {
       infectionsByMonths,
       toBeHospitalized,
       hospitalBeds,
+      IcuCareNeeded,
       severeCurrentlyInfected,
       severeIRTMonths,
       toBeHospitalizedSevere,
-      hospitalBedsSevere
+      hospitalBedsSevere,
+      IcuCareNeededSevere
     );
   }
 
@@ -133,10 +149,12 @@ const covid19ImpactEstimator = (data) => {
     infectionsByRequestedTime,
     toBeHospitalized,
     hospitalBeds,
+    IcuCareNeeded,
     severeCurrentlyInfected,
     severeIRT,
     toBeHospitalizedSevere,
-    hospitalBedsSevere
+    hospitalBedsSevere,
+    IcuCareNeededSevere
   );
 };
 
