@@ -25,34 +25,34 @@ const covid19ImpactEstimator = (input) => {
   const severeIRT = calculator(currentlyInfected, 2 / 3);
 
   if (periodType === 'weeks') {
-    const infectionsByRequestedTime = calculator(currentlyInfected, 4);
-    const severeIRT = calculator(currentlyInfected, 4);
+    const infectionsByWeeks = calculator(currentlyInfected, 4);
+    const severeIRTWeeks = calculator(currentlyInfected, 4);
 
     return {
       input,
       impact: {
         currentlyInfected,
-        infectionsByRequestedTime
+        infectionsByRequestedTime: infectionsByWeeks
       },
       severeImpact: {
         currentlyInfected: severeCurrentlyInfected,
-        infectionsByRequestedTime: severeIRT
+        infectionsByRequestedTime: severeIRTWeeks
       }
     };
   }
   if (periodType === 'months') {
-    const infectionsByRequestedTime = calculator(currentlyInfected, 1024);
-    const severeIRT = calculator(currentlyInfected, 1024);
+    const infectionsByMonths = calculator(currentlyInfected, 1024);
+    const severeIRTMonths = calculator(currentlyInfected, 1024);
 
     return {
       input,
       impact: {
         currentlyInfected,
-        infectionsByRequestedTime
+        infectionsByRequestedTime: infectionsByMonths
       },
       severeImpact: {
         currentlyInfected: severeCurrentlyInfected,
-        infectionsByRequestedTime: severeIRT
+        infectionsByRequestedTime: severeIRTMonths
       }
     };
   }
