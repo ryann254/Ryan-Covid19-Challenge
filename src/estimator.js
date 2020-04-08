@@ -1,11 +1,11 @@
 const calculator = (number, multiplyBy) => parseInt(number, 10) * multiplyBy;
 
-const result = (duration, durationType) => {
+const result = (durations, durationType) => {
   if (durationType === 'weeks') {
-    return Math.trunc((parseInt(duration, 10) * 7) / 3);
+    return Math.trunc((parseInt(durations, 10) * 7) / 3);
   }
   if (durationType === 'months') {
-    return Math.trunc((parseInt(duration, 10) * 30) / 3);
+    return Math.trunc((parseInt(durations, 10) * 30) / 3);
   }
 
   return Math.trunc(parseInt(duration, 10) / 3);
