@@ -37,18 +37,18 @@ function returnFunction(
   return {
     input: firstField,
     impact: {
+      casesForICUByRequestedTime: impactFifthField,
       currentlyInfected: impactFirstField,
       infectionsByRequestedTime: impactSecondField,
       severeCasesByRequestedTime: impactThirdField,
-      hospitalBedsByRequestedTime: impactFourthField,
-      casesForICUByRequestedTime: impactFifthField
+      hospitalBedsByRequestedTime: impactFourthField
     },
     severeImpact: {
+      casesForICUByRequestedTime: severeFifthField,
       currentlyInfected: severeFirstField,
       infectionsByRequestedTime: severeSecondField,
       severeCasesByRequestedTime: severeThirdField,
-      hospitalBedsByRequestedTime: severeFourthField,
-      casesForICUByRequestedTime: severeFifthField
+      hospitalBedsByRequestedTime: severeFourthField
     }
   };
 }
