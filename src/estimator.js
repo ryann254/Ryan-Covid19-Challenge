@@ -12,10 +12,7 @@ const data = {
   totalHospitalBeds: 1380614
 };
 
-// Helper function
-const calculator = (number, multiplyBy) => {
-  return number * multiplyBy;
-};
+const calculator = (number, multiplyBy) => number * multiplyBy;
 
 const covid19ImpactEstimator = (data) => {
   const { reportedCases } = data;
@@ -25,13 +22,11 @@ const covid19ImpactEstimator = (data) => {
   const infectionsByRequestedTime = calculator(currentlyInfected, 512);
   const severeIRT = calculator(currentlyInfected, 512);
 
-  let impact, severeImpact;
-
-  impact = {
+  const impact = {
     currentlyInfected,
     infectionsByRequestedTime
   };
-  severeImpact = {
+  const severeImpact = {
     currentlyInfected: severeCurrentlyInfected,
     infectionsByRequestedTime: severeIRT
   };
@@ -43,4 +38,6 @@ const covid19ImpactEstimator = (data) => {
   };
 };
 
-export default covid19ImpactEstimator;
+covid19ImpactEstimator(data);
+
+// export default covid19ImpactEstimator;
