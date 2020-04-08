@@ -1,4 +1,4 @@
-const calculator = (number, multiplyBy) => number * multiplyBy;
+const calculator = (number, multiplyBy) => parseInt(number, 10) * multiplyBy;
 
 const result = (duration, durationType) => {
   if (durationType === 'weeks') {
@@ -11,29 +11,44 @@ const result = (duration, durationType) => {
   return Math.trunc(parseInt(duration, 10) / 3);
 };
 
+const hospitalized = (number) => Math.trunc((15 / 100) * number);
+function availableHospitalBeds(totalBeds, patients) {
+  const beds = (35 / 100) * totalBeds;
+
+  return Math.trunc(beds - patients);
+}
+
 function returnFunction(
   firstField,
   impactFirstField,
   impactSecondField,
+  impactThirdField,
+  impactFourthField,
   severeFirstField,
-  severeSecondField
+  severeSecondField,
+  severeThirdField,
+  severeFourthField
 ) {
   return {
     input: firstField,
     impact: {
       currentlyInfected: impactFirstField,
-      infectionsByRequestedTime: impactSecondField
+      infectionsByRequestedTime: impactSecondField,
+      severeCasesByRequestedTime: impactThirdField,
+      hospitalBedsByRequestedTime: impactFourthField
     },
     severeImpact: {
       currentlyInfected: severeFirstField,
-      infectionsByRequestedTime: severeSecondField
+      infectionsByRequestedTime: severeSecondField,
+      severeCasesByRequestedTime: severeThirdField,
+      hospitalBedsByRequestedTime: severeFourthField
     }
   };
 }
 
 const covid19ImpactEstimator = (data) => {
   const input = data;
-  const { reportedCases, periodType, timeToElapse } = input;
+  const { reportedCases, periodType, timeToElapse, totalHospitalBeds } = input;
 
   const resultIndays = result(timeToElapse);
   const resultInWeeks = result(timeToElapse, 'weeks');
@@ -46,6 +61,13 @@ const covid19ImpactEstimator = (data) => {
     2 ** resultIndays
   );
   const severeIRT = calculator(severeCurrentlyInfected, 2 ** resultIndays);
+  let toBeHospitalized = hospitalized(infectionsByRequestedTime);
+  let toBeHospitalizedSevere = hospitalized(severeIRT);
+  let hospitalBeds = availableHospitalBeds(totalHospitalBeds, toBeHospitalized);
+  let hospitalBedsSevere = availableHospitalBeds(
+    totalHospitalBeds,
+    toBeHospitalizedSevere
+  );
 
   if (periodType === 'weeks') {
     const infectionsByWeeks = calculator(currentlyInfected, 2 ** resultInWeeks);
@@ -53,13 +75,24 @@ const covid19ImpactEstimator = (data) => {
       severeCurrentlyInfected,
       2 ** resultInWeeks
     );
+    toBeHospitalized = hospitalized(infectionsByWeeks);
+    toBeHospitalizedSevere = hospitalized(severeIRTWeeks);
+    hospitalBeds = availableHospitalBeds(totalHospitalBeds, toBeHospitalized);
+    hospitalBedsSevere = availableHospitalBeds(
+      totalHospitalBeds,
+      toBeHospitalizedSevere
+    );
 
     return returnFunction(
       input,
       currentlyInfected,
       infectionsByWeeks,
+      toBeHospitalized,
+      hospitalBeds,
       severeCurrentlyInfected,
-      severeIRTWeeks
+      severeIRTWeeks,
+      toBeHospitalizedSevere,
+      hospitalBedsSevere
     );
   }
   if (periodType === 'months') {
@@ -71,13 +104,24 @@ const covid19ImpactEstimator = (data) => {
       severeCurrentlyInfected,
       2 ** resultInMonths
     );
+    toBeHospitalized = hospitalized(infectionsByWeeks);
+    toBeHospitalizedSevere = hospitalized(severeIRTWeeks);
+    hospitalBeds = availableHospitalBeds(totalHospitalBeds, toBeHospitalized);
+    hospitalBedsSevere = availableHospitalBeds(
+      totalHospitalBeds,
+      toBeHospitalizedSevere
+    );
 
     return returnFunction(
       input,
       currentlyInfected,
       infectionsByMonths,
+      toBeHospitalized,
+      hospitalBeds,
       severeCurrentlyInfected,
-      severeIRTMonths
+      severeIRTMonths,
+      toBeHospitalizedSevere,
+      hospitalBedsSevere
     );
   }
 
@@ -85,8 +129,12 @@ const covid19ImpactEstimator = (data) => {
     input,
     currentlyInfected,
     infectionsByRequestedTime,
+    toBeHospitalized,
+    hospitalBeds,
     severeCurrentlyInfected,
-    severeIRT
+    severeIRT,
+    toBeHospitalizedSevere,
+    hospitalBedsSevere
   );
 };
 
