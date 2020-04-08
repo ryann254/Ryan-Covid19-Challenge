@@ -54,17 +54,13 @@ const covid19ImpactEstimator = (data) => {
       2 ** resultInWeeks
     );
 
-    return {
+    return returnFunction(
       input,
-      impact: {
-        currentlyInfected,
-        infectionsByRequestedTime: infectionsByWeeks
-      },
-      severeImpact: {
-        currentlyInfected: severeCurrentlyInfected,
-        infectionsByRequestedTime: severeIRTWeeks
-      }
-    };
+      currentlyInfected,
+      infectionsByWeeks,
+      severeCurrentlyInfected,
+      severeIRTWeeks
+    );
   }
   if (periodType === 'months') {
     const infectionsByMonths = calculator(
@@ -76,17 +72,13 @@ const covid19ImpactEstimator = (data) => {
       2 ** resultInMonths
     );
 
-    return {
+    return returnFunction(
       input,
-      impact: {
-        currentlyInfected,
-        infectionsByRequestedTime: infectionsByMonths
-      },
-      severeImpact: {
-        currentlyInfected: severeCurrentlyInfected,
-        infectionsByRequestedTime: severeIRTMonths
-      }
-    };
+      currentlyInfected,
+      infectionsByMonths,
+      severeCurrentlyInfected,
+      severeIRTMonths
+    );
   }
 
   return returnFunction(
