@@ -15,15 +15,19 @@ const data = {
 const calculator = (number, multiplyBy) => number * multiplyBy;
 
 const covid19ImpactEstimator = (input) => {
-  const { reportedCases, periodType } = input;
+  const { reportedCases, periodType, timeToElapse } = input;
+
+  const result = Math.trunc(parseInt(timeToElapse) / 3);
 
   const currentlyInfected = calculator(reportedCases, 10);
   const severeCurrentlyInfected = calculator(reportedCases, 50);
-  const infectionsByRequestedTime = Math.trunc(
-    calculator(currentlyInfected, 2 / 3)
+  const infectionsByRequestedTime = calculator(
+    currentlyInfected,
+    Math.pow(2, result)
   );
-  const severeIRT = Math.trunc(calculator(severeCurrentlyInfected, 2 / 3));
+  const severeIRT = calculator(severeCurrentlyInfected, Math.pow(2, result));
 
+  console.log(infectionsByRequestedTime);
   if (periodType === 'weeks') {
     const infectionsByWeeks = calculator(currentlyInfected, 4);
     const severeIRTWeeks = calculator(severeCurrentlyInfected, 4);
