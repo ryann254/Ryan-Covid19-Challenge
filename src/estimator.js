@@ -15,27 +15,61 @@ const data = {
 const calculator = (number, multiplyBy) => number * multiplyBy;
 
 const covid19ImpactEstimator = (input) => {
-  const { reportedCases } = input;
+  const { reportedCases, periodType } = input;
 
   const currentlyInfected = calculator(reportedCases, 10);
   const severeCurrentlyInfected = calculator(reportedCases, 50);
-  const infectionsByRequestedTime = calculator(currentlyInfected, 512);
-  const severeIRT = calculator(currentlyInfected, 512);
 
-  const impact = {
-    currentlyInfected,
-    infectionsByRequestedTime
-  };
-  const severeImpact = {
-    currentlyInfected: severeCurrentlyInfected,
-    infectionsByRequestedTime: severeIRT
-  };
+  if (periodType === 'days') {
+    const infectionsByRequestedTime = Math.trunc(
+      calculator(currentlyInfected, 2 / 3)
+    );
+    const severeIRT = calculator(currentlyInfected, 2 / 3);
 
-  return {
-    data,
-    impact,
-    severeImpact
-  };
+    return {
+      input,
+      impact: {
+        currentlyInfected,
+        infectionsByRequestedTime
+      },
+      severeImpact: {
+        currentlyInfected: severeCurrentlyInfected,
+        infectionsByRequestedTime: severeIRT
+      }
+    };
+  } else if (periodType === 'weeks') {
+    const infectionsByRequestedTime = calculator(currentlyInfected, 4);
+    const severeIRT = calculator(currentlyInfected, 4);
+
+    return {
+      input,
+      impact: {
+        currentlyInfected,
+        infectionsByRequestedTime
+      },
+      severeImpact: {
+        currentlyInfected: severeCurrentlyInfected,
+        infectionsByRequestedTime: severeIRT
+      }
+    };
+  } else if (periodType === 'months') {
+    const infectionsByRequestedTime = calculator(currentlyInfected, 1024);
+    const severeIRT = calculator(currentlyInfected, 1024);
+
+    return {
+      input,
+      impact: {
+        currentlyInfected,
+        infectionsByRequestedTime
+      },
+      severeImpact: {
+        currentlyInfected: severeCurrentlyInfected,
+        infectionsByRequestedTime: severeIRT
+      }
+    };
+  } else {
+    return;
+  }
 };
 
 covid19ImpactEstimator(data);
