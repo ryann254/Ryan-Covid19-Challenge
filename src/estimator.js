@@ -1,22 +1,21 @@
 const calculator = (number, multiplyBy) => number * multiplyBy;
 
 const result = (duration, durationType) => {
-  if (durationType === 'days') {
-    return Math.trunc(parseInt(duration, 10) / 3);
-  }
   if (durationType === 'weeks') {
     return Math.trunc((parseInt(duration, 10) * 7) / 3);
   }
   if (durationType === 'months') {
     return Math.trunc((parseInt(duration, 10) * 30) / 3);
   }
+
+  return Math.trunc(parseInt(duration, 10) / 3);
 };
 
 const covid19ImpactEstimator = (data) => {
   const input = data;
   const { reportedCases, periodType, timeToElapse } = input;
 
-  const resultIndays = result(timeToElapse, 'days');
+  const resultIndays = result(timeToElapse);
   const resultInWeeks = result(timeToElapse, 'weeks');
   const resultInMonths = result(timeToElapse, 'months');
 
@@ -83,19 +82,4 @@ const covid19ImpactEstimator = (data) => {
   };
 };
 
-const data = {
-  region: {
-    name: 'Africa',
-    avgAge: 19.7,
-    avgDailyIncomeInUSD: 5,
-    avgDailyIncomePopulation: 0.71
-  },
-  periodType: 'days',
-  timeToElapse: 58,
-  reportedCases: 674,
-  population: 66622705,
-  totalHospitalBeds: 1380614
-};
-
-covid19ImpactEstimator(data);
-// export default covid19ImpactEstimator;
+export default covid19ImpactEstimator;
