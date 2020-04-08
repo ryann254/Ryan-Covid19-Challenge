@@ -14,8 +14,8 @@ const data = {
 
 const calculator = (number, multiplyBy) => number * multiplyBy;
 
-const covid19ImpactEstimator = (data) => {
-  const { reportedCases } = data;
+const covid19ImpactEstimator = (input) => {
+  const { reportedCases } = input;
 
   const currentlyInfected = calculator(reportedCases, 10);
   const severeCurrentlyInfected = calculator(reportedCases, 50);
