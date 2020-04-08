@@ -19,25 +19,11 @@ const covid19ImpactEstimator = (input) => {
 
   const currentlyInfected = calculator(reportedCases, 10);
   const severeCurrentlyInfected = calculator(reportedCases, 50);
+  const infectionsByRequestedTime = Math.trunc(
+    calculator(currentlyInfected, 2 / 3)
+  );
+  const severeIRT = calculator(currentlyInfected, 2 / 3);
 
-  if (periodType === 'days') {
-    const infectionsByRequestedTime = Math.trunc(
-      calculator(currentlyInfected, 2 / 3)
-    );
-    const severeIRT = calculator(currentlyInfected, 2 / 3);
-
-    return {
-      input,
-      impact: {
-        currentlyInfected,
-        infectionsByRequestedTime
-      },
-      severeImpact: {
-        currentlyInfected: severeCurrentlyInfected,
-        infectionsByRequestedTime: severeIRT
-      }
-    };
-  }
   if (periodType === 'weeks') {
     const infectionsByRequestedTime = calculator(currentlyInfected, 4);
     const severeIRT = calculator(currentlyInfected, 4);
@@ -70,8 +56,20 @@ const covid19ImpactEstimator = (input) => {
       }
     };
   }
+
+  return {
+    input,
+    impact: {
+      currentlyInfected,
+      infectionsByRequestedTime
+    },
+    severeImpact: {
+      currentlyInfected: severeCurrentlyInfected,
+      infectionsByRequestedTime: severeIRT
+    }
+  };
 };
 
 covid19ImpactEstimator(data);
 
-// export default covid19ImpactEstimator;
+export default covid19ImpactEstimator;
