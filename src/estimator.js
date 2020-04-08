@@ -27,7 +27,6 @@ const covid19ImpactEstimator = (input) => {
   );
   const severeIRT = calculator(severeCurrentlyInfected, Math.pow(2, result));
 
-  console.log(infectionsByRequestedTime);
   if (periodType === 'weeks') {
     const infectionsByWeeks = calculator(currentlyInfected, 4);
     const severeIRTWeeks = calculator(severeCurrentlyInfected, 4);
