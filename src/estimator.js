@@ -11,11 +11,11 @@ const result = (duration, durationType) => {
   return Math.trunc(parseInt(duration, 10) / 3);
 };
 
-const hospitalized = (number) => Math.trunc((15 / 100) * number);
+const hospitalized = (number) => (15 / 100) * number;
 function availableHospitalBeds(totalBeds, patients) {
   const beds = (35 / 100) * totalBeds;
 
-  return Math.trunc(beds - patients);
+  return beds - patients;
 }
 
 function returnFunction(
