@@ -67,8 +67,6 @@ const covid19ImpactEstimator = (input) => {
         infectionsByRequestedTime: severeIRT
       }
     };
-  } else {
-    return;
   }
 };
 
