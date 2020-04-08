@@ -11,13 +11,13 @@ const result = (duration, durationType) => {
   return Math.trunc(parseInt(duration, 10) / 3);
 };
 
-const returnFunction = (
+function returnFunction(
   firstField,
   impactFirstField,
   impactSecondField,
   severeFirstField,
   severeSecondField
-) => {
+) {
   return {
     input: firstField,
     impact: {
@@ -29,7 +29,7 @@ const returnFunction = (
       infectionsByRequestedTime: severeSecondField
     }
   };
-};
+}
 
 const covid19ImpactEstimator = (data) => {
   const input = data;
