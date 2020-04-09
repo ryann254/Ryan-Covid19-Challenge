@@ -12,12 +12,12 @@ const result = (duration, durationType) => {
 };
 
 function calculateLostMoney(infectedPeople, population, income, duration) {
-  return infectedPeople * population * income * duration;
+  return Math.trunc(infectedPeople * population * income * duration);
 }
 
-const ventilatorCases = (number) => (2 / 100) * number;
+const ventilatorCases = (number) => Math.trunc((2 / 100) * number);
 
-const calculateICUCareNeeded = (number) => (5 / 100) * number;
+const calculateICUCareNeeded = (number) => Math.trunc((5 / 100) * number);
 
 const hospitalized = (number) => Math.trunc((15 / 100) * number);
 
