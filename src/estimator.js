@@ -125,6 +125,8 @@ const covid19ImpactEstimator = (data) => {
       totalHospitalBeds,
       toBeHospitalizedSevere
     );
+    IcuCareNeeded = calculateICUCareNeeded(infectionsByMonths);
+    IcuCareNeededSevere = calculateICUCareNeeded(severeIRTMonths);
 
     return returnFunction(
       input,
@@ -132,10 +134,12 @@ const covid19ImpactEstimator = (data) => {
       infectionsByMonths,
       toBeHospitalized,
       hospitalBeds,
+      IcuCareNeeded,
       severeCurrentlyInfected,
       severeIRTMonths,
       toBeHospitalizedSevere,
-      hospitalBedsSevere
+      hospitalBedsSevere,
+      IcuCareNeededSevere
     );
   }
 
