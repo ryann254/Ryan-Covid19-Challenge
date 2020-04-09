@@ -11,6 +11,8 @@ const result = (duration, durationType) => {
   return Math.trunc(parseInt(duration, 10) / 3);
 };
 
+const ventilatorCases = (number) => (2 / 100) * number;
+
 const calculateICUCareNeeded = (number) => (5 / 100) * number;
 
 const hospitalized = (number) => Math.trunc((15 / 100) * number);
@@ -28,11 +30,13 @@ function returnFunction(
   impactThirdField,
   impactFourthField,
   impactFifthField,
+  impactSixthField,
   severeFirstField,
   severeSecondField,
   severeThirdField,
   severeFourthField,
-  severeFifthField
+  severeFifthField,
+  severeSixthField
 ) {
   return {
     input: firstField,
@@ -41,14 +45,16 @@ function returnFunction(
       infectionsByRequestedTime: impactSecondField,
       severeCasesByRequestedTime: impactThirdField,
       hospitalBedsByRequestedTime: impactFourthField,
-      casesForICUByRequestedTime: impactFifthField
+      casesForICUByRequestedTime: impactFifthField,
+      casesForVentilatorsByRequestedTime: impactSixthField
     },
     severeImpact: {
       currentlyInfected: severeFirstField,
       infectionsByRequestedTime: severeSecondField,
       severeCasesByRequestedTime: severeThirdField,
       hospitalBedsByRequestedTime: severeFourthField,
-      casesForICUByRequestedTime: severeFifthField
+      casesForICUByRequestedTime: severeFifthField,
+      casesForVentilatorsByRequestedTime: severeSixthField
     }
   };
 }
@@ -78,6 +84,8 @@ const covid19ImpactEstimator = (data) => {
   );
   let IcuCareNeeded = calculateICUCareNeeded(infectionsByRequestedTime);
   let IcuCareNeededSevere = calculateICUCareNeeded(severeIRT);
+  let ventilatorsNeeded = ventilatorCases(infectionsByRequestedTime);
+  let ventilatorsNeededSevere = ventilatorCases(severeIRT);
 
   if (periodType === 'weeks') {
     const infectionsByWeeks = calculator(currentlyInfected, 2 ** resultInWeeks);
@@ -94,6 +102,8 @@ const covid19ImpactEstimator = (data) => {
     );
     IcuCareNeeded = calculateICUCareNeeded(infectionsByWeeks);
     IcuCareNeededSevere = calculateICUCareNeeded(severeIRTWeeks);
+    ventilatorsNeeded = ventilatorCases(infectionsByWeeks);
+    ventilatorsNeededSevere = ventilatorCases(severeIRTWeeks);
 
     return returnFunction(
       input,
@@ -102,11 +112,13 @@ const covid19ImpactEstimator = (data) => {
       toBeHospitalized,
       hospitalBeds,
       IcuCareNeeded,
+      ventilatorsNeeded,
       severeCurrentlyInfected,
       severeIRTWeeks,
       toBeHospitalizedSevere,
       hospitalBedsSevere,
-      IcuCareNeededSevere
+      IcuCareNeededSevere,
+      ventilatorsNeededSevere
     );
   }
   if (periodType === 'months') {
@@ -127,6 +139,8 @@ const covid19ImpactEstimator = (data) => {
     );
     IcuCareNeeded = calculateICUCareNeeded(infectionsByMonths);
     IcuCareNeededSevere = calculateICUCareNeeded(severeIRTMonths);
+    ventilatorsNeeded = ventilatorCases(infectionsByMonths);
+    ventilatorsNeededSevere = ventilatorCases(severeIRTMonths);
 
     return returnFunction(
       input,
@@ -135,11 +149,13 @@ const covid19ImpactEstimator = (data) => {
       toBeHospitalized,
       hospitalBeds,
       IcuCareNeeded,
+      ventilatorsNeeded,
       severeCurrentlyInfected,
       severeIRTMonths,
       toBeHospitalizedSevere,
       hospitalBedsSevere,
-      IcuCareNeededSevere
+      IcuCareNeededSevere,
+      ventilatorsNeededSevere
     );
   }
 
@@ -150,11 +166,13 @@ const covid19ImpactEstimator = (data) => {
     toBeHospitalized,
     hospitalBeds,
     IcuCareNeeded,
+    ventilatorsNeeded,
     severeCurrentlyInfected,
     severeIRT,
     toBeHospitalizedSevere,
     hospitalBedsSevere,
-    IcuCareNeededSevere
+    IcuCareNeededSevere,
+    ventilatorsNeededSevere
   );
 };
 
