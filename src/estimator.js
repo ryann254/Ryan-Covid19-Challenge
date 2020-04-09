@@ -177,7 +177,7 @@ const covid19ImpactEstimator = (data) => {
     ventilatorsNeeded = ventilatorCases(infectionsByMonths);
     ventilatorsNeededSevere = ventilatorCases(severeIRTMonths);
     lostMoney = calculateLostMoney(
-      infectionsByWeeks,
+      infectionsByMonths,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
       timeToElapse
