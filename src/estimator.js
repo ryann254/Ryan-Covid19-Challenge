@@ -1,14 +1,14 @@
 const calculator = (number, multiplyBy) => parseInt(number, 10) * multiplyBy;
 
-const result = (durations, durationType) => {
+const result = (duration, durationType) => {
   if (durationType === 'weeks') {
-    return Math.trunc((parseInt(durations, 10) * 7) / 3);
+    return Math.trunc((parseInt(duration, 10) * 7) / 3);
   }
   if (durationType === 'months') {
-    return Math.trunc((parseInt(durations, 10) * 30) / 3);
+    return Math.trunc((parseInt(duration, 10) * 30) / 3);
   }
 
-  return Math.trunc(parseInt(durations, 10) / 3);
+  return Math.trunc(parseInt(duration, 10) / 3);
 };
 
 const calculateICUCareNeeded = (number) => (5 / 100) * number;
