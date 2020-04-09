@@ -15,7 +15,7 @@ function calculateLostMoney(infectedPeople, population, income, duration) {
   return infectedPeople * population * income * duration;
 }
 
-const ventilatorCases = (number) => (2 / 100) * number;
+const ventilatorCases = (number) => Math.trunc((2 / 100) * number);
 
 const calculateICUCareNeeded = (number) => Math.trunc((5 / 100) * number);
 
