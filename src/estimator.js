@@ -11,9 +11,9 @@ const result = (durations, durationType) => {
   return Math.trunc(parseInt(durations, 10) / 3);
 };
 
-const hospitalized = (number) => (15 / 100) * number;
-
 const calculateICUCareNeeded = (number) => (5 / 100) * number;
+
+const hospitalized = (number) => (15 / 100) * number;
 
 function availableHospitalBeds(totalBeds, patients) {
   const beds = (35 / 100) * totalBeds;
@@ -37,18 +37,18 @@ function returnFunction(
   return {
     input: firstField,
     impact: {
-      casesForICUByRequestedTime: impactFifthField,
       currentlyInfected: impactFirstField,
       infectionsByRequestedTime: impactSecondField,
       severeCasesByRequestedTime: impactThirdField,
-      hospitalBedsByRequestedTime: impactFourthField
+      hospitalBedsByRequestedTime: impactFourthField,
+      casesForICUByRequestedTime: impactFifthField
     },
     severeImpact: {
-      casesForICUByRequestedTime: severeFifthField,
       currentlyInfected: severeFirstField,
       infectionsByRequestedTime: severeSecondField,
       severeCasesByRequestedTime: severeThirdField,
-      hospitalBedsByRequestedTime: severeFourthField
+      hospitalBedsByRequestedTime: severeFourthField,
+      casesForICUByRequestedTime: severeFifthField
     }
   };
 }
@@ -92,8 +92,6 @@ const covid19ImpactEstimator = (data) => {
       totalHospitalBeds,
       toBeHospitalizedSevere
     );
-    const IcuCareNeededWeeks = calculateICUCareNeeded(infectionsByWeeks);
-    const IcuCareNeededSevereWeeks = calculateICUCareNeeded(severeIRTWeeks);
 
     return returnFunction(
       input,
@@ -101,12 +99,10 @@ const covid19ImpactEstimator = (data) => {
       infectionsByWeeks,
       toBeHospitalized,
       hospitalBeds,
-      IcuCareNeededWeeks,
       severeCurrentlyInfected,
       severeIRTWeeks,
       toBeHospitalizedSevere,
-      hospitalBedsSevere,
-      IcuCareNeededSevereWeeks
+      hospitalBedsSevere
     );
   }
   if (periodType === 'months') {
@@ -125,8 +121,6 @@ const covid19ImpactEstimator = (data) => {
       totalHospitalBeds,
       toBeHospitalizedSevere
     );
-    const IcuCareNeededMonths = calculateICUCareNeeded(infectionsByMonths);
-    const IcuCareNeededSevereMonths = calculateICUCareNeeded(severeIRTMonths);
 
     return returnFunction(
       input,
@@ -134,12 +128,10 @@ const covid19ImpactEstimator = (data) => {
       infectionsByMonths,
       toBeHospitalized,
       hospitalBeds,
-      IcuCareNeededMonths,
       severeCurrentlyInfected,
       severeIRTMonths,
       toBeHospitalizedSevere,
-      hospitalBedsSevere,
-      IcuCareNeededSevereMonths
+      hospitalBedsSevere
     );
   }
 
