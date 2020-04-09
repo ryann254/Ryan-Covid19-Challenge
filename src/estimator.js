@@ -13,7 +13,7 @@ const result = (duration, durationType) => {
 
 const calculateICUCareNeeded = (number) => (5 / 100) * number;
 
-const hospitalized = (number) => (15 / 100) * number;
+const hospitalized = (number) => Math.trunc((15 / 100) * number);
 
 function availableHospitalBeds(totalBeds, patients) {
   const beds = (35 / 100) * totalBeds;
