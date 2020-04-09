@@ -129,13 +129,13 @@ const covid19ImpactEstimator = (data) => {
       infectionsByWeeks,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse
+      timeToElapse * 7
     );
     lostMoneySevere = calculateLostMoney(
       severeIRTWeeks,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse
+      timeToElapse * 7
     );
 
     return returnFunction(
@@ -180,13 +180,13 @@ const covid19ImpactEstimator = (data) => {
       infectionsByMonths,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse
+      timeToElapse * 30
     );
     lostMoneySevere = calculateLostMoney(
       severeIRTMonths,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse
+      timeToElapse * 30
     );
 
     return returnFunction(
