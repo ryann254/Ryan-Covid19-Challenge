@@ -12,7 +12,7 @@ const result = (duration, durationType) => {
 };
 
 function calculateLostMoney(infectedPeople, population, income, duration) {
-  return infectedPeople * population * income * duration;
+  return Math.trunc(infectedPeople * population * income * duration);
 }
 
 const ventilatorCases = (number) => Math.trunc((2 / 100) * number);
@@ -227,4 +227,97 @@ const covid19ImpactEstimator = (data) => {
   );
 };
 
-export default covid19ImpactEstimator;
+function fillData(calculatedData, timeToElapse, periodType) {
+  const currentlyInfected = document.querySelector('#currentlyInfected');
+  const infectionsLabel = document.querySelector('#infectionsLabel');
+  const infectionsByRequestedTime = document.querySelector(
+    '#infectionsByTimeRequested'
+  );
+  const icuCasesLabel = document.querySelector('#icuCasesLabel');
+  const casesForICUByRequestedTime = document.querySelector(
+    '#casesForICUByRequestedTime'
+  );
+  const hospitalBeds = document.querySelector('#hospitalBeds');
+  const hospitalBedsByRequestedTime = document.querySelector(
+    '#hospitalBedsByRequestedTime'
+  );
+  const ventilators = document.querySelector('#ventilators');
+  const casesForVentilatorsByRequestedTime = document.querySelector(
+    '#casesForVentilatorsByRequestedTime'
+  );
+  const dollarsInFlight = document.querySelector('#dollarsInFlight');
+
+  const newDataArray = [calculatedData];
+  newDataArray.map((item) => {
+    currentlyInfected.innerHTML = item.impact.currentlyInfected;
+    infectionsLabel.innerHTML = `Infections in ${timeToElapse.value} ${periodType.value}: `;
+    infectionsByRequestedTime.innerHTML = item.impact.infectionsByRequestedTime;
+    icuCasesLabel.innerHTML = `People Needing ICU Care in ${timeToElapse.value} ${periodType.value}: `;
+    casesForICUByRequestedTime.innerHTML =
+      item.impact.casesForICUByRequestedTime;
+    hospitalBeds.innerHTML = `Hospital Beds Available in ${timeToElapse.value} ${periodType.value}: `;
+    hospitalBedsByRequestedTime.innerHTML =
+      item.impact.hospitalBedsByRequestedTime;
+    ventilators.innerHTML = `Ventilators Needed in ${timeToElapse.value} ${periodType.value}: `;
+    casesForVentilatorsByRequestedTime.innerHTML =
+      item.impact.casesForVentilatorsByRequestedTime;
+    dollarsInFlight.innerHTML = `$ ${item.impact.dollarsInFlight}`;
+  });
+}
+
+function removeWarning() {
+  const container = document.getElementById('container');
+  const overlayRight = document.querySelector('#overlay-right');
+  container.classList.remove('error');
+  overlayRight.classList.remove('error-message-visible');
+}
+
+function handleSave() {
+  const container = document.getElementById('container');
+  const population = document.querySelector('#population');
+  const timetoElapse = document.querySelector('#timeToElapse');
+  const reportedCases = document.querySelector('#reportedCases');
+  const totalHospitalBeds = document.querySelector('#totalHospitalBeds');
+  const periodType = document.querySelector('#periodType');
+
+  const checkArray = [];
+  checkArray.push(
+    population.value,
+    timetoElapse.value,
+    reportedCases.value,
+    totalHospitalBeds.value,
+    periodType.value
+  );
+  checkArray.forEach((item) => {
+    if (item === NaN || item === '...') {
+      const overlayRight = document.querySelector('#overlay-right');
+      container.classList.add('error');
+      overlayRight.classList.add('error-message-visible');
+      container.classList.remove('right-panel-active');
+    } else {
+      removeWarning();
+      const data = {
+        region: {
+          name: 'Africa',
+          avgAge: 19.7,
+          avgDailyIncomeInUSD: 5,
+          avgDailyIncomePopulation: 0.71
+        },
+        periodType: periodType.value,
+        timeToElapse: timetoElapse.value,
+        reportedCases: reportedCases.value,
+        population: population.value,
+        totalHospitalBeds: totalHospitalBeds.value
+      };
+      const calculatedData = covid19ImpactEstimator(data);
+      container.classList.add('right-panel-active');
+      fillData(calculatedData, timetoElapse, periodType);
+    }
+  });
+}
+
+function backButton() {
+  container.classList.remove('right-panel-active');
+}
+
+// export default covid19ImpactEstimator;
