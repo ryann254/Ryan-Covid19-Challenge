@@ -22,7 +22,7 @@ function fillData(calculatedData, timeToElapse, periodType) {
 
   const newDataArray = [calculatedData];
   const impactArray = newDataArray.map((item) => item.impact);
-  impactArray.map((item) => {
+  impactArray.map(function (item) {
     currentlyInfected.innerHTML = item.currentlyInfected;
     infectionsLabel.innerHTML = `Infections in ${timeToElapse.value} ${periodType.value}: `;
     infectionsByRequestedTime.innerHTML = item.infectionsByRequestedTime;
