@@ -264,15 +264,15 @@ function fillData(calculatedData, timeToElapse, periodType) {
   });
 }
 
+const container = document.getElementById('container');
+
 function removeWarning() {
-  const container = document.getElementById('container');
   const overlayRight = document.querySelector('#overlay-right');
   container.classList.remove('error');
   overlayRight.classList.remove('error-message-visible');
 }
 
 function handleSave() {
-  const container = document.getElementById('container');
   const population = document.querySelector('#population');
   const timetoElapse = document.querySelector('#timeToElapse');
   const reportedCases = document.querySelector('#reportedCases');
@@ -288,7 +288,7 @@ function handleSave() {
     periodType.value
   );
   checkArray.forEach((item) => {
-    if (item === NaN || item === '...') {
+    if (isNaN(item) || item === '...') {
       const overlayRight = document.querySelector('#overlay-right');
       container.classList.add('error');
       overlayRight.classList.add('error-message-visible');
@@ -316,8 +316,7 @@ function handleSave() {
 }
 
 function backButton() {
-  const container = document.getElementById('container');
   container.classList.remove('right-panel-active');
 }
 
-// export default covid19ImpactEstimator;
+export default covid19ImpactEstimator;
