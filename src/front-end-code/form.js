@@ -22,7 +22,7 @@ function fillData(calculatedData, timeToElapse, periodType) {
 
   const newDataArray = [calculatedData];
   const impactArray = newDataArray.map((item) => item.impact);
-  impactArray.map(function (item) {
+  impactArray.map((item) => {
     currentlyInfected.innerHTML = item.currentlyInfected;
     infectionsLabel.innerHTML = `Infections in ${timeToElapse.value} ${periodType.value}: `;
     infectionsByRequestedTime.innerHTML = item.infectionsByRequestedTime;
@@ -43,6 +43,7 @@ function removeWarning() {
   overlayRight.classList.remove('error-message-visible');
 }
 
+// eslint-disable-no-unused-vars
 function handleSave() {
   const population = document.querySelector('#population');
   const timetoElapse = document.querySelector('#timeToElapse');
@@ -86,6 +87,7 @@ function handleSave() {
   });
 }
 
+// eslint-disable-no-unused-vars
 function backButton() {
   container.classList.remove('right-panel-active');
 }
