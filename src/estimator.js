@@ -242,7 +242,7 @@ function fillData(calculatedData, timeToElapse, periodType) {
     '#hospitalBedsByRequestedTime'
   );
   const ventilators = document.querySelector('#ventilators');
-  const casesForVentilatorsByRequestedTime = document.querySelector(
+  const casesForVentilators = document.querySelector(
     '#casesForVentilatorsByRequestedTime'
   );
   const dollarsInFlight = document.querySelector('#dollarsInFlight');
@@ -258,8 +258,7 @@ function fillData(calculatedData, timeToElapse, periodType) {
     hospitalBeds.innerHTML = `Hospital Beds Available in ${timeToElapse.value} ${periodType.value}: `;
     hospitalBedsByRequestedTime.innerHTML = item.hospitalBedsByRequestedTime;
     ventilators.innerHTML = `Ventilators Needed in ${timeToElapse.value} ${periodType.value}: `;
-    casesForVentilatorsByRequestedTime.innerHTML =
-      item.casesForVentilatorsByRequestedTime;
+    casesForVentilators.innerHTML = item.casesForVentilatorsByRequestedTime;
     dollarsInFlight.innerHTML = `$ ${item.dollarsInFlight}`;
   });
 }
@@ -288,7 +287,7 @@ function handleSave() {
     periodType.value
   );
   checkArray.forEach((item) => {
-    if (isNaN(item) || item === '...') {
+    if (!Number.isNaN(item) || item === '...') {
       const overlayRight = document.querySelector('#overlay-right');
       container.classList.add('error');
       overlayRight.classList.add('error-message-visible');
@@ -315,4 +314,4 @@ function handleSave() {
   });
 }
 
-export default covid19ImpactEstimator;
+// export default covid19ImpactEstimator;
