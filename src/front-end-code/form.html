@@ -122,9 +122,8 @@
     <script src="/src/estimator.js"></script>
     <script>
       function backButton() {
-        document
-          .getElementById('container')
-          .classList.remove('right-panel-active');
+        const container = document.getElementById('container');
+        container.classList.remove('right-panel-active');
       }
     </script>
   </body>
