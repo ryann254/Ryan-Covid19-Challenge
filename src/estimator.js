@@ -35,12 +35,14 @@ function returnFunction(
   impactFourthField,
   impactFifthField,
   impactSixthField,
+  impactSeventhField,
   severeFirstField,
   severeSecondField,
   severeThirdField,
   severeFourthField,
   severeFifthField,
-  severeSixthField
+  severeSixthField,
+  severeSeventhField
 ) {
   return {
     input: firstField,
@@ -50,7 +52,8 @@ function returnFunction(
       severeCasesByRequestedTime: impactThirdField,
       hospitalBedsByRequestedTime: impactFourthField,
       casesForICUByRequestedTime: impactFifthField,
-      casesForVentilatorsByRequestedTime: impactSixthField
+      casesForVentilatorsByRequestedTime: impactSixthField,
+      dollarsInFlight: impactSeventhField
     },
     severeImpact: {
       currentlyInfected: severeFirstField,
@@ -58,7 +61,8 @@ function returnFunction(
       severeCasesByRequestedTime: severeThirdField,
       hospitalBedsByRequestedTime: severeFourthField,
       casesForICUByRequestedTime: severeFifthField,
-      casesForVentilatorsByRequestedTime: severeSixthField
+      casesForVentilatorsByRequestedTime: severeSixthField,
+      dollarsInFlight: severeSeventhField
     }
   };
 }
