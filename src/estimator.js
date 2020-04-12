@@ -259,6 +259,7 @@ function removeWarning() {
   overlayRight.classList.remove('error-message-visible');
 }
 
+// eslint-disable-next-line no-unused-vars
 function handleSave() {
   const population = document.querySelector('#population');
   const timetoElapse = document.querySelector('#timeToElapse');
