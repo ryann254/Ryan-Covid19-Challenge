@@ -228,39 +228,27 @@ const covid19ImpactEstimator = (data) => {
 };
 
 function fillData(calculatedData, timeToElapse, periodType) {
-  const currentlyInfected = document.querySelector('#currentlyInfected');
-  const infectionsLabel = document.querySelector('#infectionsLabel');
-  const infectionsByRequestedTime = document.querySelector(
-    '#infectionsByTimeRequested'
-  );
+  const cInfected = document.querySelector('#currentlyInfected');
+  const iLabel = document.querySelector('#infectionsLabel');
+  const infectionsByRT = document.querySelector('#infectionsByTimeRequested');
   const icuCasesLabel = document.querySelector('#icuCasesLabel');
-  const casesForICUByRequestedTime = document.querySelector(
-    '#casesForICUByRequestedTime'
-  );
+  const casesForICUByRT = document.querySelector('#casesForICUByRequestedTime');
   const hospitalBeds = document.querySelector('#hospitalBeds');
-  const hospitalBedsByRequestedTime = document.querySelector(
-    '#hospitalBedsByRequestedTime'
-  );
+  const BedsByRT = document.querySelector('#hospitalBedsByRequestedTime');
   const ventilators = document.querySelector('#ventilators');
-  const casesForVentilators = document.querySelector(
-    '#casesForVentilatorsByRequestedTime'
-  );
+  const cVent = document.querySelector('#casesForVentilatorsByRequestedTime');
   const dollarsInFlight = document.querySelector('#dollarsInFlight');
 
-  const newDataArray = [calculatedData];
-  const impactArray = newDataArray.map((item) => item.impact);
-  impactArray.map((item) => {
-    currentlyInfected.innerHTML = item.currentlyInfected;
-    infectionsLabel.innerHTML = `Infections in ${timeToElapse.value} ${periodType.value}: `;
-    infectionsByRequestedTime.innerHTML = item.infectionsByRequestedTime;
-    icuCasesLabel.innerHTML = `People Needing ICU Care in ${timeToElapse.value} ${periodType.value}: `;
-    casesForICUByRequestedTime.innerHTML = item.casesForICUByRequestedTime;
-    hospitalBeds.innerHTML = `Hospital Beds Available in ${timeToElapse.value} ${periodType.value}: `;
-    hospitalBedsByRequestedTime.innerHTML = item.hospitalBedsByRequestedTime;
-    ventilators.innerHTML = `Ventilators Needed in ${timeToElapse.value} ${periodType.value}: `;
-    casesForVentilators.innerHTML = item.casesForVentilatorsByRequestedTime;
-    dollarsInFlight.innerHTML = `$ ${item.dollarsInFlight}`;
-  });
+  cInfected.innerHTML = calculatedData.impact.currentlyInfected;
+  iLabel.innerHTML = `Infections in ${timeToElapse.value} ${periodType.value}: `;
+  infectionsByRT.innerHTML = calculatedData.impact.infectionsByRequestedTime;
+  icuCasesLabel.innerHTML = `People Needing ICU Care in ${timeToElapse.value} ${periodType.value}: `;
+  casesForICUByRT.innerHTML = calculatedData.impact.casesForICUByRequestedTime;
+  hospitalBeds.innerHTML = `Hospital Beds Available in ${timeToElapse.value} ${periodType.value}: `;
+  BedsByRT.innerHTML = calculatedData.impact.hospitalBedsByRequestedTime;
+  ventilators.innerHTML = `Ventilators Needed in ${timeToElapse.value} ${periodType.value}: `;
+  cVent.innerHTML = calculatedData.impact.casesForVentilatorsByRequestedTime;
+  dollarsInFlight.innerHTML = `$ ${calculatedData.impact.dollarsInFlight}`;
 }
 
 const container = document.getElementById('container');
@@ -287,7 +275,7 @@ function handleSave() {
     periodType.value
   );
   checkArray.forEach((item) => {
-    if (!Number.isNaN(item) || item === '...') {
+    if (Number.isNaN(item) || item === '...') {
       const overlayRight = document.querySelector('#overlay-right');
       container.classList.add('error');
       overlayRight.classList.add('error-message-visible');
@@ -314,4 +302,4 @@ function handleSave() {
   });
 }
 
-export default covid19ImpactEstimator;
+// export default covid19ImpactEstimator;
