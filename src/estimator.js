@@ -248,20 +248,19 @@ function fillData(calculatedData, timeToElapse, periodType) {
   const dollarsInFlight = document.querySelector('#dollarsInFlight');
 
   const newDataArray = [calculatedData];
-  newDataArray.map((item) => {
-    currentlyInfected.innerHTML = item.impact.currentlyInfected;
+  const impactArray = newDataArray.map((item) => item.impact);
+  impactArray.map((item) => {
+    currentlyInfected.innerHTML = item.currentlyInfected;
     infectionsLabel.innerHTML = `Infections in ${timeToElapse.value} ${periodType.value}: `;
-    infectionsByRequestedTime.innerHTML = item.impact.infectionsByRequestedTime;
+    infectionsByRequestedTime.innerHTML = item.infectionsByRequestedTime;
     icuCasesLabel.innerHTML = `People Needing ICU Care in ${timeToElapse.value} ${periodType.value}: `;
-    casesForICUByRequestedTime.innerHTML =
-      item.impact.casesForICUByRequestedTime;
+    casesForICUByRequestedTime.innerHTML = item.casesForICUByRequestedTime;
     hospitalBeds.innerHTML = `Hospital Beds Available in ${timeToElapse.value} ${periodType.value}: `;
-    hospitalBedsByRequestedTime.innerHTML =
-      item.impact.hospitalBedsByRequestedTime;
+    hospitalBedsByRequestedTime.innerHTML = item.hospitalBedsByRequestedTime;
     ventilators.innerHTML = `Ventilators Needed in ${timeToElapse.value} ${periodType.value}: `;
     casesForVentilatorsByRequestedTime.innerHTML =
-      item.impact.casesForVentilatorsByRequestedTime;
-    dollarsInFlight.innerHTML = `$ ${item.impact.dollarsInFlight}`;
+      item.casesForVentilatorsByRequestedTime;
+    dollarsInFlight.innerHTML = `$ ${item.dollarsInFlight}`;
   });
 }
 
@@ -317,6 +316,7 @@ function handleSave() {
 }
 
 function backButton() {
+  const container = document.getElementById('container');
   container.classList.remove('right-panel-active');
 }
 
