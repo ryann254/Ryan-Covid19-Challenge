@@ -251,8 +251,6 @@ function fillData(calculatedData, timeToElapse, periodType) {
   dollarsInFlight.innerHTML = `$ ${calculatedData.impact.dollarsInFlight}`;
 }
 
-const container = document.getElementById('container');
-
 function removeWarning() {
   const overlayRight = document.querySelector('#overlay-right');
   container.classList.remove('error');
@@ -261,6 +259,7 @@ function removeWarning() {
 
 // eslint-disable-next-line no-unused-vars
 function handleSave() {
+  const container = document.getElementById('container');
   const population = document.querySelector('#population');
   const timetoElapse = document.querySelector('#timeToElapse');
   const reportedCases = document.querySelector('#reportedCases');
