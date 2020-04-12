@@ -12,7 +12,7 @@ const result = (duration, durationType) => {
 };
 
 function calculateLostMoney(infectedPeople, population, income, duration) {
-  return Math.trunc(infectedPeople * population * income * duration);
+  return Math.trunc((infectedPeople * population * income) / duration);
 }
 
 const ventilatorCases = (number) => Math.trunc((2 / 100) * number);
