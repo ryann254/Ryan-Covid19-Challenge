@@ -12,7 +12,7 @@ const result = (duration, durationType) => {
 };
 
 function calculateLostMoney(infectedPeople, population, income, duration) {
-  return infectedPeople * population * income * duration;
+  return Math.trunc(infectedPeople * population * income * duration);
 }
 
 const ventilatorCases = (number) => Math.trunc((2 / 100) * number);
@@ -125,17 +125,18 @@ const covid19ImpactEstimator = (data) => {
     IcuCareNeededSevere = calculateICUCareNeeded(severeIRTWeeks);
     ventilatorsNeeded = ventilatorCases(infectionsByWeeks);
     ventilatorsNeededSevere = ventilatorCases(severeIRTWeeks);
+    const time = timeToElapse * 7;
     lostMoney = calculateLostMoney(
       infectionsByWeeks,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse * 7
+      time
     );
     lostMoneySevere = calculateLostMoney(
       severeIRTWeeks,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse * 7
+      time
     );
 
     return returnFunction(
@@ -176,17 +177,18 @@ const covid19ImpactEstimator = (data) => {
     IcuCareNeededSevere = calculateICUCareNeeded(severeIRTMonths);
     ventilatorsNeeded = ventilatorCases(infectionsByMonths);
     ventilatorsNeededSevere = ventilatorCases(severeIRTMonths);
+    const time = timeToElapse * 30;
     lostMoney = calculateLostMoney(
       infectionsByMonths,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse * 30
+      time
     );
     lostMoneySevere = calculateLostMoney(
       severeIRTMonths,
       avgDailyIncomePopulation,
       avgDailyIncomeInUSD,
-      timeToElapse * 30
+      time
     );
 
     return returnFunction(
