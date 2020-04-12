@@ -5,8 +5,10 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "lint": "eslint ./src/"
+    "lint": "eslint ./src/",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://ryann254.github.io/Ryan-Covid19-Deploy",
   "dependencies": {
     "gh-pages": "^2.2.0",
     "on-covid-19": "^0.1.3"
