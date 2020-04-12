@@ -252,6 +252,7 @@ function fillData(calculatedData, timeToElapse, periodType) {
 }
 
 function removeWarning() {
+  const container = document.getElementById('container');
   const overlayRight = document.querySelector('#overlay-right');
   container.classList.remove('error');
   overlayRight.classList.remove('error-message-visible');
