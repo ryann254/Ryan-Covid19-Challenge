@@ -261,13 +261,14 @@ function removeWarning() {
 }
 
 function displayRadioValue() {
-  let element = document.getElementsByName('periodType');
-
-  for (i = 0; i < element.length; i++) {
+  const element = document.getElementsByName('periodType');
+  let periodType;
+  for (let i = 0; i < element.length; i += 1) {
     if (element[i].checked) {
-      return element[i].value;
+      periodType = element[i].value;
     }
   }
+  return periodType;
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -278,7 +279,6 @@ function handleSave() {
   const reportedCases = document.querySelector('#reportedCases');
   const totalHospitalBeds = document.querySelector('#totalHospitalBeds');
   const periodType = displayRadioValue();
-  console.log(periodType);
 
   const checkArray = [];
   checkArray.push(
@@ -303,7 +303,7 @@ function handleSave() {
           avgDailyIncomeInUSD: 5,
           avgDailyIncomePopulation: 0.71
         },
-        periodType: periodType,
+        periodType,
         timeToElapse: timetoElapse.value,
         reportedCases: reportedCases.value,
         population: population.value,
