@@ -61,8 +61,21 @@
             name="totalHospitalBeds"
             onfocusin="removeWarning()"
           />
-          <label class="label" for="days">Choose your period type</label>
-          <div class="radio-buttons">
+          <label class="label" for="periodType">Choose your period type</label>
+          <select
+            required
+            data-period-type
+            class="periodtype"
+            id="periodType"
+            onfocusin="removeWarning()"
+            name="periodType"
+          >
+            <option selected value="">...</option>
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months">Months</option>
+          </select>
+          <!-- <div class="radio-buttons">
             <div>
               <input
                 type="radio"
@@ -74,7 +87,13 @@
               <label for="select">Choose...</label>
             </div>
             <div>
-              <input type="radio" id="days" name="periodType" value="days" />
+              <input
+                data-period-type
+                type="radio"
+                id="days"
+                name="periodType"
+                value="days"
+              />
               <label for="days">Days</label>
             </div>
             <div>
@@ -97,7 +116,7 @@
               />
               <label for="months">Months</label>
             </div>
-          </div>
+          </div> -->
           <button data-go-estimate type="button" class="back-button">
             <a href="./index.html" style="color: #fff;">Back to Homepage</a>
           </button>
