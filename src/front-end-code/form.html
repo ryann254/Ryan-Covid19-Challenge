@@ -3,61 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="Description"
+      content="Estimator App, Corona, Covid19, virus estimation"
+    />
     <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap"
       rel="stylesheet"
-      href="path/to/font-awesome/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="form.css" />
     <title>Estimator App</title>
   </head>
-  <script src="https://use.fontawesome.com/8c0baf4a24.js"></script>
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up-container" id="sign-up-container">
         <form action="#">
           <h1>Please fill the form</h1>
+          <label for="population">Enter population...</label>
           <input
             required
             data-population
             id="population"
             type="number"
-            placeholder="Enter population..."
+            placeholder="..."
             name="population"
             onfocusin="removeWarning()"
           />
+          <label for="timeToElapse">Enter estimation time...</label>
           <input
             required
             data-time-to-elapse
             id="timeToElapse"
             type="number"
-            placeholder="Enter estimation time..."
+            placeholder="..."
             name="timeToElapse"
             onfocusin="removeWarning()"
           />
+          <label for="reportedCases">Enter reported cases...</label>
           <input
             required
             data-reported-cases
             id="reportedCases"
             type="number"
-            placeholder="Enter reported cases..."
+            placeholder="..."
             name="reportedCases"
             onfocusin="removeWarning()"
           />
+          <label for="totalHospitalBeds"
+            >Enter total hospital beds available...</label
+          >
           <input
             required
             data-total-hospital-beds
             id="totalHospitalBeds"
             type="number"
-            placeholder="Enter total hospital beds available..."
+            placeholder="..."
             name="totalHospitalBeds"
             onfocusin="removeWarning()"
           />
-          <label class="label">Choose your period type</label>
+          <label class="label" for="periodType">Choose your period type</label>
           <select
             class="periodtype"
             id="periodType"
             required
             onfocusin="removeWarning()"
+            name="periodType"
           >
             <option selected>...</option>
             <option value="days">Days</option>
@@ -65,7 +75,7 @@
             <option value="months">Months</option>
           </select>
           <button data-go-estimate type="button" class="back-button">
-            <a href="./index.html">Back to Homepage</a>
+            <a href="./index.html" style="color: #fff;">Back to Homepage</a>
           </button>
         </form>
       </div>
@@ -119,7 +129,7 @@
         </div>
       </div>
     </div>
-    <script src="/src/estimator.js"></script>
+    <script src="estimator.js"></script>
     <script>
       function backButton() {
         const container = document.getElementById('container');

@@ -30,7 +30,7 @@ p {
 
 a {
   margin: 15px 0;
-  color: #333;
+  color: #fff;
   text-decoration: none;
   font-size: 14px;
 }
@@ -80,7 +80,7 @@ button {
   margin: 10px 0;
   border-radius: 20px;
   border: 1px solid #ff4b2b;
-  background: #ff4b2b;
+  background: #19547b;
   color: #fff;
   padding: 12px 35px;
   font-size: 12px;
@@ -139,8 +139,8 @@ button.ghost {
 }
 
 .overlay {
-  background: linear-gradient(to right, #2193b0, #6dd5ed) no-repeat 0 0 / cover;
-  background: #2193b0;
+  background: linear-gradient(to right, #2c3e50, #bdc3c7) no-repeat 0 0 / cover;
+  background: #2c3e50;
   color: #fff;
   position: relative;
   left: -100%;
