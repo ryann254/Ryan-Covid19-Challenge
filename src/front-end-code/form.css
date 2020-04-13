@@ -64,6 +64,15 @@ a {
   border: none;
 }
 
+label {
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+.radio-buttons input {
+  margin-left: -140px;
+  width: 15px;
+}
+
 .periodtype {
   margin: 8px 0;
   padding: 12px 15px;
@@ -209,7 +218,7 @@ button.ghost {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 20px -120px;
+  margin: 20px 0 20px -25px;
   float: left;
   padding-bottom: 7px;
 }
