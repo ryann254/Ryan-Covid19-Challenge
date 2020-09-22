@@ -1,0 +1,11 @@
+{
+  "name": "front-end-code",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ryan Njoroge",
+  "license": "MIT",
+  "devDependencies": {
+    "imagemin": "^7.0.1",
+    "imagemin-webp": "^6.0.0"
+  }
+}
