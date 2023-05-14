@@ -4,7 +4,7 @@
 
 This is an eligibility assessment for the 2020 [#BuildforSDG](https://buildforsdg.andela.com/) program
 
-Here's the deployed version https://ryann254.github.io/Ryan-Covid19-Deploy/
+Here's the deployed version [Covid 19 Estimator App](https://ryann254.github.io/Ryan-Covid19-Deploy/)
 
 The assessment empowers me to **attempt** helping society and leaders prepare for the **real big problem** of COVID-19, which is **its impact on lives, health systems, supply chains, and the economy**: 
 > 1.  Too many patients, not enough hospitals and beds. A serious shortage of ventilators, masks and other PPE - if *we don’t practice social distancing*.
